@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
+
+  <title>Library Rework</title>
+</head>
+
+<body>
+  <header>
+    <div class="nav">
+      <ul>
+        <li>Library</li>
+        </li>
+      </ul>
+    </div>
+  </header>
+  </head>
+
+  <body>
+    <main>
+      <input id="submitButton" type="button" value="Add Book" onclick="showSubmit()">
+
+      <div class="container">
+
+</div>
+<div class="popForm">
+  <form name="myForm" id="myForm" onsubmit="console.log('submitting')">
+<label>Title</label>
+<br>
+<input type="text" id="title">
+<br>
+<label>Author</label>
+<br>
+<input type="text" id="author">
+<br>
+<label>Pages</label>
+<br>
+<input type="text" id="pages">
+<br>
+<p>Have you read the book?</p>
+<input type="radio" id="yes" name="radBTN" value="yes">
+<label for="yes">Yes</label>
+<input type="radio" id="no" name="radBTN" value="no">
+<label for="no">No</label>
+<br>
+<br>
+
+<input type="submit" id="submitForm" value="Submit">
+
+</form>
+
+</div>
+    </main>
+  </body>
+  <script src="app.js"></script>
+
+</html>
