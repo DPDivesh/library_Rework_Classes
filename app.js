@@ -12,8 +12,14 @@ let individualBookArray = 0;
 
  let library = [];
 
+ 
+ if (localStorage.getItem("library")!= null){
+  
+  library = JSON.parse(localStorage["library"]);
 
-library = JSON.parse(localStorage["library"]);
+  
+  }
+
 
 for(savedBook in library){
   addOldVisuals();
