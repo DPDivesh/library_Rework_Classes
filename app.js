@@ -51,7 +51,7 @@ formEvent.addEventListener("submit", function(e){
   for(radiobtn of radiobtns){
     if( radiobtn.checked){
       read = radiobtn.value;
-      submitCalled();
+      submitCalled(read);
     //  return addBookToLibrary(read);
 
     }
@@ -62,14 +62,13 @@ formEvent.addEventListener("submit", function(e){
 // let onion1 = new book("Tom","Jim",423,"yes",3);
 let test;
 let listTest;
-function submitCalled(){
+function submitCalled(read){
     hideSubmit();
     
     title = document.getElementById('title').value;
     author = document.getElementById('author').value;
     pages = parseInt(document.getElementById('pages').value)
-    read = document.getElementById('no').value;
-
+    read = read
 
 console.log(document.querySelectorAll('.visualBook').length);
 
@@ -144,7 +143,7 @@ console.log(library.slice(-1)[0]);
           readBook.style.backgroundColor="green";
       
         }
-      
+      console.log(readBook);
       
       
         individualBook[i].append(titleBook);
@@ -157,13 +156,23 @@ console.log(library.slice(-1)[0]);
         
         buttonDelete.addEventListener("click",(e)=>{
           console.log(e.currentTarget.parentNode);
-          let identifybook = e.currentTarget.parentNode.getAttribute("data-index-number");
-          console.log(identifybook);
-          console.log(e.currentTarget.parentNode);
-          console.log(individualBook[i]);
+          indextoAdd = e.currentTarget.parentNode.getAttribute("data-index-number");
+          libraryFiltered = library.findIndex(bookIndex => bookIndex.dataNumber == indextoAdd);
+          let indexVal = libraryFiltered;
+
+
           // let identifybook = individualBook[i].dataset.indexNumber;
-          console.log(identifybook);
-          deleteButtonEvent(identifybook);
+        
+          console.log(indextoAdd);
+          let contentToDelete = Array.from(document.getElementsByClassName("visualBook"));
+          console.log(contentToDelete[indexVal]);
+          contentToDelete[indexVal].remove("div");
+          console.log(library);
+          library.splice(indexVal,1);
+          console.log(library);
+          localStorage.setItem("library", JSON.stringify(library));
+
+          // deleteButtonEvent(libraryFiltered);
         })
         buttonAdd.addEventListener("click",(e)=>{
           // let identifybook = e.currentTarget.parentNode.getAttribute("data-index-number");
@@ -233,36 +242,7 @@ console.log(library.slice(-1)[0]);
          
         }
 
-  deleteEvent = document.querySelector(".deleteButton");
-function deleteButtonEvent(indexValue){
-if(indexValue>0){
-  console.log(library);
-  library.splice(indexValue-1,1);
 
-  console.log(library);
-}
-else{
-  library.splice(indexValue,1);
-  console.log(library);
-}
-
-let contentToDelete = document.getElementsByClassName("visualBook");
-console.log(contentToDelete);
-for(let j=0; j<contentToDelete.length;j++){
-  let holdVal = contentToDelete[j].getAttribute("data-index-number");
-  console.log(holdVal);
-  if(holdVal==indexValue){
-  console.log(contentToDelete[indexValue]);
-  contentToDelete[j].remove("div");
-  console.log(contentToDelete);
-  i = library.length;
-}
-
-
-}
-localStorage.setItem("library",JSON.stringify(library));
-
-      };
     }
      
 
@@ -294,7 +274,7 @@ localStorage.setItem("library",JSON.stringify(library));
         buttonDelete.className = "deleteButton";
         buttonAdd.innerText = "+";
         buttonRemove.innerText = "-"
-        individualBook[i].setAttribute("data-index-number",library.slice(-1)[0].dataNumber)
+        individualBook[i].setAttribute("data-index-number",library[i].dataNumber)
         titleBook.innerText = library[i].title;
         authorBook.innerText="by: " + library[i].author;
         pagesBook.innerText= library[i].pages + " pg";
@@ -317,13 +297,23 @@ localStorage.setItem("library",JSON.stringify(library));
         
         buttonDelete.addEventListener("click",(e)=>{
           console.log(e.currentTarget.parentNode);
-          let identifybook = e.currentTarget.parentNode.getAttribute("data-index-number");
-          console.log(identifybook);
-          console.log(e.currentTarget.parentNode);
-          console.log(individualBook[i]);
+          indextoAdd = e.currentTarget.parentNode.getAttribute("data-index-number");
+          libraryFiltered = library.findIndex(bookIndex => bookIndex.dataNumber == indextoAdd);
+          let indexVal = libraryFiltered;
+
+
           // let identifybook = individualBook[i].dataset.indexNumber;
-          console.log(identifybook);
-          deleteButtonEvent(identifybook);
+        
+          console.log(indextoAdd);
+          let contentToDelete = Array.from(document.getElementsByClassName("visualBook"));
+          console.log(contentToDelete[indexVal]);
+          contentToDelete[indexVal].remove("div");
+          console.log(library);
+          library.splice(indexVal,1);
+          console.log(library);
+          localStorage.setItem("library", JSON.stringify(library));
+
+          // deleteButtonEvent(libraryFiltered);
         })
         buttonAdd.addEventListener("click",(e)=>{
           // let identifybook = e.currentTarget.parentNode.getAttribute("data-index-number");
@@ -394,36 +384,5 @@ localStorage.setItem("library",JSON.stringify(library));
       }
 
       
-deleteEvent = document.querySelector(".deleteButton");
-function deleteButtonEvent(indexValue){
-if(indexValue>0){
-  console.log(library);
-  library.splice(indexValue-1,1);
 
-  console.log(library);
-}
-else{
-  library.splice(indexValue,1);
-  console.log(library);
-}
-
-let contentToDelete = document.getElementsByClassName("visualBook");
-console.log(contentToDelete);
-for(let j=0; j<contentToDelete.length;j++){
-  let holdVal = contentToDelete[j].getAttribute("data-index-number");
-  console.log(holdVal);
-  if(holdVal==indexValue){
-  console.log(contentToDelete[indexValue]);
-  contentToDelete[j].remove("div");
-  console.log(contentToDelete);
-  i = library.length;
-}
-
-
-}
-localStorage.setItem("library",JSON.stringify(library));
-
-
-
-      };
       }
